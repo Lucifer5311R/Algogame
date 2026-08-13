@@ -123,6 +123,9 @@ export default function CodeLab() {
     "Explain what the algorithm is doing in your own words."
   );
 
+  const [saving, setSaving] = useState(false);
+  const [saveStatus, setSaveStatus] = useState("");
+
   // Read saved state to update DOM reactively
   const [savedSubmissions, setSavedSubmissions] = useState<Record<string, LabEntry>>(() => {
     if (typeof window === "undefined") return {};
@@ -145,11 +148,8 @@ export default function CodeLab() {
     setStudentExplanation(saved.explanation || "Explain what the algorithm is doing in your own words.");
   }
 
-  function handleSave() {
-    if (typeof window === "undefined") {
-      return;
-    }
-
+  async function handleSave() {
+    // 1. Save locally to LocalStorage
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
       const payload = raw ? (JSON.parse(raw) as Record<string, LabEntry>) : {};
@@ -163,6 +163,36 @@ export default function CodeLab() {
       const payload = { [selected]: { code: studentCode, explanation: studentExplanation } };
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
       setSavedSubmissions(payload);
+    }
+
+    // 2. Save remotely to Netlify Database via Serverless Function
+    setSaving(true);
+    setSaveStatus("Saving to cloud database...");
+
+    try {
+      const res = await fetch("/.netlify/functions/save-submission", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          algorithm: selected,
+          code: studentCode,
+          explanation: studentExplanation,
+        }),
+      });
+
+      if (res.ok) {
+        setSaveStatus("Saved successfully to cloud!");
+      } else {
+        const err = await res.json();
+        setSaveStatus(`Saved locally, cloud error: ${err.error || "Unknown error"}`);
+      }
+    } catch {
+      setSaveStatus("Saved locally (offline mode)");
+    } finally {
+      setSaving(false);
+      setTimeout(() => setSaveStatus(""), 4000);
     }
   }
 
@@ -244,11 +274,18 @@ export default function CodeLab() {
               <div>
                 <div className="section-kicker">YOUR NOTES</div>
                 <h2>Write your own version</h2>
+                {saveStatus && (
+                  <div style={{ fontSize: "11px", color: "var(--accent)", fontFamily: "Share Tech Mono", marginTop: "4px" }}>
+                    {saveStatus}
+                  </div>
+                )}
               </div>
 
               <div className="lab-actions">
-                <button className="button secondary-button" onClick={handleReset}>Reset</button>
-                <button className="button primary-button" onClick={handleSave}>Save idea</button>
+                <button className="button secondary-button" disabled={saving} onClick={handleReset}>Reset</button>
+                <button className="button primary-button" disabled={saving} onClick={handleSave}>
+                  {saving ? "Saving..." : "Save idea"}
+                </button>
               </div>
             </div>
 

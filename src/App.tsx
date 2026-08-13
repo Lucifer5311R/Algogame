@@ -6,6 +6,8 @@ import CodeLab from "./pages/CodeLab";
 import Games from "./pages/Games";
 import Home from "./pages/Home";
 import RecursionTree from "./pages/RecursionTree";
+import CommunityWall from "./pages/CommunityWall";
+import DaaAnalysis from "./pages/DaaAnalysis";
 import Minesweeper from "./games/Minesweeper";
 import StealthHunt from "./games/StealthHunt";
 import Sudoku from "./games/Sudoku";
@@ -42,6 +44,8 @@ export default function App() {
       {section === "minesweeper" && <Minesweeper />}
       {section === "stealth" && <StealthHunt />}
       {section === "recursion" && <RecursionTree />}
+      {section === "community" && <CommunityWall />}
+      {section === "analysis" && <DaaAnalysis />}
 
       <footer className="footer">
         <div>

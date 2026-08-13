@@ -19,6 +19,8 @@ export function Navbar({
     { label: "Algorithms", value: "algorithms" },
     { label: "Recursion Tree", value: "recursion" },
     { label: "Code Lab", value: "code" },
+    { label: "Community Feed", value: "community" },
+    { label: "DAA Theory", value: "analysis" },
   ];
 
   return (

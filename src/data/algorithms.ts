@@ -6,8 +6,10 @@ export type Section =
   | "tictactoe"
   | "sudoku"
   | "minesweeper"
+  | "recursion"
   | "stealth"
-  | "recursion";
+  | "community"
+  | "analysis";
 
 export type GameItem = {
   title: string;

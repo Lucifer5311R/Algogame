@@ -224,7 +224,68 @@ export default function DaaAnalysis() {
         </div>
       </section>
 
-      {/* SECTION 4: LOWER BOUND THEOREM */}
+      {/* SECTION 4: GAME PARADIGMS & REAL-WORLD USES */}
+      <section style={{ background: "var(--panel)", border: "1px solid var(--border)", borderRadius: "16px", padding: "30px", boxShadow: "0 4px 30px rgba(0,0,0,0.15)" }}>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center", marginBottom: "15px" }}>
+          <BookOpen size={20} style={{ color: "var(--accent)" }} />
+          <h2 style={{ margin: 0, fontFamily: "Orbitron", fontSize: "18px" }}>Game Paradigms & Real-World Industry Applications</h2>
+        </div>
+        <p style={{ fontSize: "14px", color: "var(--muted)", lineHeight: "1.6", marginBottom: "25px" }}>
+          How the DAA concepts that power our visual games translate directly to industry-standard tools (like Google Maps, Photoshop, and Chess AIs):
+        </p>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          {/* Pathfinding */}
+          <div style={{ padding: "20px", background: "rgba(0,0,0,0.2)", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.03)" }}>
+            <span style={{ fontSize: "10px", fontFamily: "Share Tech Mono", color: "var(--accent)", fontWeight: "bold" }}>STEALTH HUNT (BFS / DFS / A* SEARCH)</span>
+            <h3 style={{ margin: "4px 0 10px", fontSize: "16px", color: "#fff", fontFamily: "Orbitron" }}>State Space Graphs & Heuristic Navigation</h3>
+            <p style={{ fontSize: "13px", color: "var(--muted)", margin: "0 0 12px", lineHeight: "1.5" }}>
+              <strong>Theory in Game:</strong> The guard models the maze as a grid graph. It explores state nodes layer-by-layer (BFS) or estimates distance to the player using Manhattan heuristic vectors (A*).
+            </p>
+            <div style={{ padding: "12px", background: "rgba(66,255,152,0.06)", borderLeft: "3px solid var(--accent)", borderRadius: "6px", fontSize: "12px", color: "#fff", lineHeight: "1.5" }}>
+              <strong>Real-World Applications:</strong>
+              <ul style={{ margin: "6px 0 0", paddingLeft: "20px" }}>
+                <li><strong>Adobe Photoshop (Flood Fill / Magic Wand)</strong>: Uses Breadth-First Search (BFS) pixel-traversal to detect adjacent pixels of identical coloring in image arrays.</li>
+                <li><strong>Google Maps Navigation</strong>: Uses advanced A* Search with geometric distance heuristics to compute path routing across city graph intersections.</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Backtracking */}
+          <div style={{ padding: "20px", background: "rgba(0,0,0,0.2)", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.03)" }}>
+            <span style={{ fontSize: "10px", fontFamily: "Share Tech Mono", color: "var(--accent)", fontWeight: "bold" }}>SUDOKU (BACKTRACKING SOLVER)</span>
+            <h3 style={{ margin: "4px 0 10px", fontSize: "16px", color: "#fff", fontFamily: "Orbitron" }}>Constraint Satisfaction Problems (CSP)</h3>
+            <p style={{ fontSize: "13px", color: "var(--muted)", margin: "0 0 12px", lineHeight: "1.5" }}>
+              <strong>Theory in Game:</strong> Backtracking systematically assigns test values to empty cells. If a constraint is violated, the recursion stack rewinds (pops) and restores the previous cell state.
+            </p>
+            <div style={{ padding: "12px", background: "rgba(66,255,152,0.06)", borderLeft: "3px solid var(--accent)", borderRadius: "6px", fontSize: "12px", color: "#fff", lineHeight: "1.5" }}>
+              <strong>Real-World Applications:</strong>
+              <ul style={{ margin: "6px 0 0", paddingLeft: "20px" }}>
+                <li><strong>Database Query Optimizers</strong>: SQL engines use backtracking depth searches to find the most efficient sequence of join loops among multiple tables.</li>
+                <li><strong>Logistics Scheduling</strong>: Airline flight rosters and automated employee scheduling systems prune search spaces using constraint check rules.</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Minimax */}
+          <div style={{ padding: "20px", background: "rgba(0,0,0,0.2)", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.03)" }}>
+            <span style={{ fontSize: "10px", fontFamily: "Share Tech Mono", color: "var(--accent)", fontWeight: "bold" }}>TIC-TAC-TOE (MINIMAX AI)</span>
+            <h3 style={{ margin: "4px 0 10px", fontSize: "16px", color: "#fff", fontFamily: "Orbitron" }}>Adversarial Game Trees</h3>
+            <p style={{ fontSize: "13px", color: "var(--muted)", margin: "0 0 12px", lineHeight: "1.5" }}>
+              <strong>Theory in Game:</strong> The AI treats every move as a node in a decision tree. It assumes both players make optimal decisions, maximizing its score while minimizing the human player's score.
+            </p>
+            <div style={{ padding: "12px", background: "rgba(66,255,152,0.06)", borderLeft: "3px solid var(--accent)", borderRadius: "6px", fontSize: "12px", color: "#fff", lineHeight: "1.5" }}>
+              <strong>Real-World Applications:</strong>
+              <ul style={{ margin: "6px 0 0", paddingLeft: "20px" }}>
+                <li><strong>Chess Engines (Stockfish)</strong>: Uses deep Minimax trees expanded with Alpha-Beta pruning heuristics to evaluate millions of board positions in milliseconds.</li>
+                <li><strong>Quantitative Trading Bots</strong>: Evaluates market decision trees under adversarial assumptions (competing trading houses) to execute risk-mitigation strategies.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: LOWER BOUND THEOREM */}
       <section style={{ background: "var(--panel)", border: "1px solid var(--border)", borderRadius: "16px", padding: "30px", boxShadow: "0 4px 30px rgba(0,0,0,0.15)" }}>
         <div style={{ display: "flex", gap: "10px", alignItems: "center", marginBottom: "15px" }}>
           <ShieldAlert size={20} style={{ color: "var(--danger)" }} />

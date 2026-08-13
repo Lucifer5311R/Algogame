@@ -8,6 +8,17 @@ export const handler = async (event: any) => {
     };
   }
 
+  // Debugging line to see what keys Netlify is actually injecting
+  const keys = Object.keys(process.env).filter(
+    (k) =>
+      k.toLowerCase().includes("db") ||
+      k.toLowerCase().includes("database") ||
+      k.toLowerCase().includes("url") ||
+      k.toLowerCase().includes("pg") ||
+      k.toLowerCase().includes("neon")
+  );
+  console.log("Available database-related environment keys:", keys);
+
   const dbUrl = process.env.DATABASE_URL || process.env.NETLIFY_DATABASE_URL;
   
   try {
@@ -31,7 +42,6 @@ export const handler = async (event: any) => {
         }
       });
     } else if (process.env.PGHOST || process.env.NEON_DATABASE_URL) {
-      // Fallback to Netlify's built-in Neon/PG auto-injected environment parameters
       client = new Client({
         host: process.env.PGHOST,
         database: process.env.PGDATABASE,
@@ -47,7 +57,8 @@ export const handler = async (event: any) => {
       return {
         statusCode: 500,
         body: JSON.stringify({ 
-          error: "Database credentials are not configured. Please connect the database in the Netlify site panel and deploy." 
+          error: "Database credentials are not configured. Please connect the database in the Netlify site panel and deploy.",
+          debug_keys: keys
         }),
       };
     }

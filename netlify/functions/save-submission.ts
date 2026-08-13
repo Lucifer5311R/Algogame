@@ -8,18 +8,8 @@ export const handler = async (event: any) => {
     };
   }
 
-  // Netlify Database can inject either DATABASE_URL or NETLIFY_DATABASE_URL
   const dbUrl = process.env.DATABASE_URL || process.env.NETLIFY_DATABASE_URL;
-  if (!dbUrl) {
-    console.error("Database connection string is missing in environment variables.");
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ 
-        error: "Database Connection string is missing. Please ensure your database is connected to this site and trigger a redeploy." 
-      }),
-    };
-  }
-
+  
   try {
     const { algorithm, code, explanation } = JSON.parse(event.body || "{}");
 
@@ -30,12 +20,37 @@ export const handler = async (event: any) => {
       };
     }
 
-    const client = new Client({
-      connectionString: dbUrl,
-      ssl: {
-        rejectUnauthorized: false
-      }
-    });
+    let client: Client;
+
+    if (dbUrl) {
+      // Connect using full connection URI string
+      client = new Client({
+        connectionString: dbUrl,
+        ssl: {
+          rejectUnauthorized: false
+        }
+      });
+    } else if (process.env.PGHOST || process.env.NEON_DATABASE_URL) {
+      // Fallback to Netlify's built-in Neon/PG auto-injected environment parameters
+      client = new Client({
+        host: process.env.PGHOST,
+        database: process.env.PGDATABASE,
+        user: process.env.PGUSER,
+        password: process.env.PGPASSWORD,
+        port: process.env.PGPORT ? parseInt(process.env.PGPORT) : 5432,
+        ssl: {
+          rejectUnauthorized: false
+        }
+      });
+    } else {
+      console.error("No database credentials found in environment variables.");
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ 
+          error: "Database credentials are not configured. Please connect the database in the Netlify site panel and deploy." 
+        }),
+      };
+    }
 
     await client.connect();
 

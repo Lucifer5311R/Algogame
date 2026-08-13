@@ -15,41 +15,52 @@ export default function DaaAnalysis() {
 
       {/* SECTION 1: ASYMPTOTIC NOTATIONS */}
       <section style={{ background: "var(--panel)", border: "1px solid var(--border)", borderRadius: "16px", padding: "30px", boxShadow: "0 4px 30px rgba(0,0,0,0.15)" }}>
-        <div style={{ display: "flex", gap: "10px", alignItems: "center", marginBottom: "15px" }}>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center", marginBottom: "20px" }}>
           <BookOpen size={20} style={{ color: "var(--accent)" }} />
           <h2 style={{ margin: 0, fontFamily: "Orbitron", fontSize: "18px" }}>Asymptotic Complexity Foundations</h2>
         </div>
-        <p style={{ fontSize: "14px", color: "var(--muted)", lineHeight: "1.6", marginBottom: "20px" }}>
-          Asymptotic analysis describes the behavior of algorithms as the input size $n$ approaches infinity. It filters out hardware variations and constant overhead factors.
+        <p style={{ fontSize: "14px", color: "var(--muted)", lineHeight: "1.6", marginBottom: "30px" }}>
+          Asymptotic analysis describes the behavior of algorithms as the input size <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var> approaches infinity. It filters out hardware variations and constant overhead factors.
         </p>
         
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "20px" }}>
-          <div style={{ padding: "16px", background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.03)", borderRadius: "10px" }}>
-            <h3 style={{ fontSize: "14px", color: "#fff", fontFamily: "Share Tech Mono", margin: "0 0 8px" }}>O(g(n)) - Big-O (Upper Bound)</h3>
-            <code style={{ display: "block", background: "#0e0e0e", padding: "10px", borderRadius: "6px", fontSize: "12px", color: "var(--accent)", marginBottom: "8px", fontFamily: "Share Tech Mono" }}>
-              f(n) &le; c &middot; g(n) for all n &ge; n₀
-            </code>
-            <p style={{ fontSize: "12px", color: "var(--muted)", margin: 0 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "25px" }}>
+          {/* Big O */}
+          <div style={{ padding: "20px", background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.03)", borderRadius: "12px", display: "flex", flexDirection: "column", gap: "12px" }}>
+            <h3 style={{ fontSize: "15px", color: "#fff", fontFamily: "Share Tech Mono", margin: 0 }}>O(g(n)) - Big-O (Upper Bound)</h3>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", background: "#080808", padding: "15px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <span style={{ fontFamily: "Georgia, serif", fontSize: "16px", color: "var(--accent)" }}>
+                <var style={{ fontStyle: "italic" }}>f</var>(<var style={{ fontStyle: "italic" }}>n</var>) &le; <var style={{ fontStyle: "italic" }}>c</var> &middot; <var style={{ fontStyle: "italic" }}>g</var>(<var style={{ fontStyle: "italic" }}>n</var>) 
+                <span style={{ fontSize: "12px", color: "var(--muted-2)", marginLeft: "8px" }}>for n &ge; n₀</span>
+              </span>
+            </div>
+            <p style={{ fontSize: "12px", color: "var(--muted)", margin: 0, lineHeight: "1.5" }}>
               Describes the worst-case execution time. The algorithm is guaranteed to complete in at most this time envelope.
             </p>
           </div>
 
-          <div style={{ padding: "16px", background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.03)", borderRadius: "10px" }}>
-            <h3 style={{ fontSize: "14px", color: "#fff", fontFamily: "Share Tech Mono", margin: "0 0 8px" }}>&Omega;(g(n)) - Big-Omega (Lower Bound)</h3>
-            <code style={{ display: "block", background: "#0e0e0e", padding: "10px", borderRadius: "6px", fontSize: "12px", color: "var(--accent)", marginBottom: "8px", fontFamily: "Share Tech Mono" }}>
-              f(n) &ge; c &middot; g(n) for all n &ge; n₀
-            </code>
-            <p style={{ fontSize: "12px", color: "var(--muted)", margin: 0 }}>
+          {/* Big Omega */}
+          <div style={{ padding: "20px", background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.03)", borderRadius: "12px", display: "flex", flexDirection: "column", gap: "12px" }}>
+            <h3 style={{ fontSize: "15px", color: "#fff", fontFamily: "Share Tech Mono", margin: 0 }}>&Omega;(g(n)) - Big-Omega (Lower Bound)</h3>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", background: "#080808", padding: "15px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <span style={{ fontFamily: "Georgia, serif", fontSize: "16px", color: "var(--accent)" }}>
+                <var style={{ fontStyle: "italic" }}>f</var>(<var style={{ fontStyle: "italic" }}>n</var>) &ge; <var style={{ fontStyle: "italic" }}>c</var> &middot; <var style={{ fontStyle: "italic" }}>g</var>(<var style={{ fontStyle: "italic" }}>n</var>)
+                <span style={{ fontSize: "12px", color: "var(--muted-2)", marginLeft: "8px" }}>for n &ge; n₀</span>
+              </span>
+            </div>
+            <p style={{ fontSize: "12px", color: "var(--muted)", margin: 0, lineHeight: "1.5" }}>
               Describes the best-case behavior. The algorithm requires at least this amount of computational steps.
             </p>
           </div>
 
-          <div style={{ padding: "16px", background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.03)", borderRadius: "10px" }}>
-            <h3 style={{ fontSize: "14px", color: "#fff", fontFamily: "Share Tech Mono", margin: "0 0 8px" }}>&Theta;(g(n)) - Big-Theta (Tight Bound)</h3>
-            <code style={{ display: "block", background: "#0e0e0e", padding: "10px", borderRadius: "6px", fontSize: "12px", color: "var(--accent)", marginBottom: "8px", fontFamily: "Share Tech Mono" }}>
-              c₁ &middot; g(n) &le; f(n) &le; c₂ &middot; g(n)
-            </code>
-            <p style={{ fontSize: "12px", color: "var(--muted)", margin: 0 }}>
+          {/* Big Theta */}
+          <div style={{ padding: "20px", background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.03)", borderRadius: "12px", display: "flex", flexDirection: "column", gap: "12px" }}>
+            <h3 style={{ fontSize: "15px", color: "#fff", fontFamily: "Share Tech Mono", margin: 0 }}>&Theta;(g(n)) - Big-Theta (Tight Bound)</h3>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", background: "#080808", padding: "15px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <span style={{ fontFamily: "Georgia, serif", fontSize: "16px", color: "var(--accent)" }}>
+                <var style={{ fontStyle: "italic" }}>c</var>₁&middot;<var style={{ fontStyle: "italic" }}>g</var>(<var style={{ fontStyle: "italic" }}>n</var>) &le; <var style={{ fontStyle: "italic" }}>f</var>(<var style={{ fontStyle: "italic" }}>n</var>) &le; <var style={{ fontStyle: "italic" }}>c</var>₂&middot;<var style={{ fontStyle: "italic" }}>g</var>(<var style={{ fontStyle: "italic" }}>n</var>)
+              </span>
+            </div>
+            <p style={{ fontSize: "12px", color: "var(--muted)", margin: 0, lineHeight: "1.5" }}>
               Provides a tight bound. The running time is asymptotically equivalent to the bounding function.
             </p>
           </div>
@@ -62,42 +73,70 @@ export default function DaaAnalysis() {
           <Cpu size={20} style={{ color: "var(--accent)" }} />
           <h2 style={{ margin: 0, fontFamily: "Orbitron", fontSize: "18px" }}>The Master Theorem for Divide-and-Conquer</h2>
         </div>
-        <p style={{ fontSize: "14px", color: "var(--muted)", lineHeight: "1.6", marginBottom: "20px" }}>
-          The Master Theorem provides a cooking recipe solution to recurrences of the form:
+        <p style={{ fontSize: "14px", color: "var(--muted)", lineHeight: "1.6", marginBottom: "25px" }}>
+          The Master Theorem provides a direct solution to recurrences of the form:
         </p>
 
-        <div style={{ background: "#0e0e0e", padding: "15px", borderRadius: "10px", border: "1px solid rgba(255,255,255,0.05)", textAlign: "center", marginBottom: "20px" }}>
-          <code style={{ fontSize: "18px", color: "#9bffd0", fontFamily: "Share Tech Mono" }}>
-            T(n) = a &middot; T(n/b) + f(n)
-          </code>
-          <div style={{ fontSize: "12px", color: "var(--muted-2)", marginTop: "6px" }}>
-            where a &ge; 1 is the number of subproblems, b &gt; 1 is the reduction factor, and f(n) is the split/merge overhead.
+        {/* Master Theorem Equation Card */}
+        <div style={{ background: "#060606", padding: "24px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.05)", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", marginBottom: "30px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "22px", fontFamily: "Georgia, serif", color: "#9bffd0", letterSpacing: "1px" }}>
+            <var style={{ fontStyle: "italic" }}>T</var>(<var style={{ fontStyle: "italic" }}>n</var>) = 
+            <var style={{ fontStyle: "italic" }}>a</var> &middot; <var style={{ fontStyle: "italic" }}>T</var>
+            <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", verticalAlign: "middle", fontSize: "18px", padding: "0 6px", borderLeft: "1px solid", borderRight: "1px solid", borderRadius: "4px", margin: "0 2px" }}>
+              <span style={{ borderBottom: "1px solid", paddingBottom: "2px" }}><var style={{ fontStyle: "italic" }}>n</var></span>
+              <span><var style={{ fontStyle: "italic" }}>b</var></span>
+            </span>
+            + <var style={{ fontStyle: "italic" }}>f</var>(<var style={{ fontStyle: "italic" }}>n</var>)
+          </div>
+          <div style={{ fontSize: "12px", color: "var(--muted-2)", fontFamily: "Share Tech Mono", textAlign: "center" }}>
+            where <var style={{ fontStyle: "italic" }}>a</var> &ge; 1 (subproblems), <var style={{ fontStyle: "italic" }}>b</var> &gt; 1 (division ratio), and <var style={{ fontStyle: "italic" }}>f</var>(<var style={{ fontStyle: "italic" }}>n</var>) is the merge overhead.
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-          <div style={{ padding: "14px", background: "rgba(0,0,0,0.2)", borderRadius: "8px", borderLeft: "3px solid var(--accent)" }}>
-            <span style={{ fontSize: "11px", fontFamily: "Share Tech Mono", color: "var(--accent)" }}>CASE 1: HEAVY RECURSION LEAVES</span>
-            <p style={{ margin: "4px 0", fontSize: "13px", color: "#fff" }}>
-              If f(n) = O(n^(log_b(a) - &epsilon;)) for some &epsilon; &gt; 0:
-            </p>
-            <code style={{ fontSize: "13px", color: "var(--accent)", fontFamily: "Share Tech Mono" }}>T(n) = &Theta;(n^(log_b a))</code>
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          {/* Case 1 */}
+          <div style={{ padding: "16px", background: "rgba(0,0,0,0.2)", borderRadius: "10px", borderLeft: "4px solid var(--accent)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
+            <div>
+              <span style={{ fontSize: "10px", fontFamily: "Share Tech Mono", color: "var(--accent)" }}>CASE 1: LEAF DOMINANT</span>
+              <p style={{ margin: "4px 0 0", fontSize: "13px", color: "var(--muted)" }}>
+                If <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>f</var>(<var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var>) = <var style={{ fontFamily: "Georgia, serif" }}>O</var>(<var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var><sup>log<sub><var style={{ fontStyle: "italic" }}>b</var></sub><var style={{ fontStyle: "italic" }}>a</var> - &epsilon;</sup>) for some &epsilon; &gt; 0
+              </p>
+            </div>
+            <div style={{ background: "#0c0c0c", padding: "8px 16px", borderRadius: "6px", border: "1px solid rgba(255,255,255,0.03)" }}>
+              <code style={{ fontSize: "14px", color: "#fff", fontFamily: "Georgia, serif" }}>
+                &Theta;(<var style={{ fontStyle: "italic" }}>n</var><sup>log<sub><var style={{ fontStyle: "italic" }}>b</var></sub><var style={{ fontStyle: "italic" }}>a</var></sup>)
+              </code>
+            </div>
           </div>
 
-          <div style={{ padding: "14px", background: "rgba(0,0,0,0.2)", borderRadius: "8px", borderLeft: "3px solid var(--accent)" }}>
-            <span style={{ fontSize: "11px", fontFamily: "Share Tech Mono", color: "var(--accent)" }}>CASE 2: BALANCED BOUND</span>
-            <p style={{ margin: "4px 0", fontSize: "13px", color: "#fff" }}>
-              If f(n) = &Theta;(n^(log_b a)):
-            </p>
-            <code style={{ fontSize: "13px", color: "var(--accent)", fontFamily: "Share Tech Mono" }}>T(n) = &Theta;(n^(log_b a) &middot; log n)</code>
+          {/* Case 2 */}
+          <div style={{ padding: "16px", background: "rgba(0,0,0,0.2)", borderRadius: "10px", borderLeft: "4px solid var(--accent)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
+            <div>
+              <span style={{ fontSize: "10px", fontFamily: "Share Tech Mono", color: "var(--accent)" }}>CASE 2: BALANCED BOUND</span>
+              <p style={{ margin: "4px 0 0", fontSize: "13px", color: "var(--muted)" }}>
+                If <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>f</var>(<var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var>) = &Theta;(<var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var><sup>log<sub><var style={{ fontStyle: "italic" }}>b</var></sub><var style={{ fontStyle: "italic" }}>a</var></sup>)
+              </p>
+            </div>
+            <div style={{ background: "#0c0c0c", padding: "8px 16px", borderRadius: "6px", border: "1px solid rgba(255,255,255,0.03)" }}>
+              <code style={{ fontSize: "14px", color: "#fff", fontFamily: "Georgia, serif" }}>
+                &Theta;(<var style={{ fontStyle: "italic" }}>n</var><sup>log<sub><var style={{ fontStyle: "italic" }}>b</var></sub><var style={{ fontStyle: "italic" }}>a</var></sup> &middot; log <var style={{ fontStyle: "italic" }}>n</var>)
+              </code>
+            </div>
           </div>
 
-          <div style={{ padding: "14px", background: "rgba(0,0,0,0.2)", borderRadius: "8px", borderLeft: "3px solid var(--accent)" }}>
-            <span style={{ fontSize: "11px", fontFamily: "Share Tech Mono", color: "var(--accent)" }}>CASE 3: HEAVY MERGE OVERHEAD</span>
-            <p style={{ margin: "4px 0", fontSize: "13px", color: "#fff" }}>
-              If f(n) = &Omega;(n^(log_b(a) + &epsilon;)) and satisfies the regularity condition:
-            </p>
-            <code style={{ fontSize: "13px", color: "var(--accent)", fontFamily: "Share Tech Mono" }}>T(n) = &Theta;(f(n))</code>
+          {/* Case 3 */}
+          <div style={{ padding: "16px", background: "rgba(0,0,0,0.2)", borderRadius: "10px", borderLeft: "4px solid var(--accent)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
+            <div>
+              <span style={{ fontSize: "10px", fontFamily: "Share Tech Mono", color: "var(--accent)" }}>CASE 3: ROOT DOMINANT</span>
+              <p style={{ margin: "4px 0 0", fontSize: "13px", color: "var(--muted)" }}>
+                If <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>f</var>(<var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var>) = &Omega;(<var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var><sup>log<sub><var style={{ fontStyle: "italic" }}>b</var></sub><var style={{ fontStyle: "italic" }}>a</var> + &epsilon;</sup>) and satisfies regularity conditions
+              </p>
+            </div>
+            <div style={{ background: "#0c0c0c", padding: "8px 16px", borderRadius: "6px", border: "1px solid rgba(255,255,255,0.03)" }}>
+              <code style={{ fontSize: "14px", color: "#fff", fontFamily: "Georgia, serif" }}>
+                &Theta;(<var style={{ fontStyle: "italic" }}>f</var>(<var style={{ fontStyle: "italic" }}>n</var>))
+              </code>
+            </div>
           </div>
         </div>
       </section>
@@ -192,30 +231,40 @@ export default function DaaAnalysis() {
           <h2 style={{ margin: 0, fontFamily: "Orbitron", fontSize: "18px" }}>The &Omega;(n log n) Lower Bound Proof</h2>
         </div>
         <p style={{ fontSize: "14px", color: "var(--muted)", lineHeight: "1.6", marginBottom: "20px" }}>
-          Why can't we sort faster than $n \log n$ using comparison-based sorting? Here is the mathematical proof using the <strong>Decision Tree Model</strong>:
+          Why can't we sort faster than <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var> log <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var> using comparison-based sorting? Here is the mathematical proof using the <strong>Decision Tree Model</strong>:
         </p>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "12px", background: "rgba(0,0,0,0.2)", padding: "20px", borderRadius: "10px", border: "1px solid rgba(255,255,255,0.03)" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px", background: "rgba(0,0,0,0.2)", padding: "24px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.03)" }}>
           <div style={{ fontSize: "13px", color: "#fff", lineHeight: "1.6" }}>
-            1. Any comparison-based sorting algorithm can be represented as a binary decision tree where each node represents a comparison $A[i] \le A[j]$, and each leaf represents a sorted permutation.
+            1. Any comparison-based sorting algorithm can be represented as a binary decision tree where each node represents a comparison <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>A</var>[<var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>i</var>] &le; <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>A</var>[<var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>j</var>], and each leaf represents a sorted permutation.
           </div>
           <div style={{ fontSize: "13px", color: "#fff", lineHeight: "1.6" }}>
-            2. An array of size $n$ has $n!$ possible permutations. To sort the array correctly, the decision tree must have at least $n!$ leaves.
+            2. An array of size <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var> has <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var>! possible permutations. To sort the array correctly, the decision tree must have at least <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var>! leaves.
           </div>
           <div style={{ fontSize: "13px", color: "#fff", lineHeight: "1.6" }}>
-            3. A binary tree of height $h$ can have at most $2^h$ leaves. Therefore:
-            <code style={{ display: "block", background: "#0e0e0e", padding: "10px", borderRadius: "6px", fontSize: "12px", color: "var(--accent)", margin: "8px 0", fontFamily: "Share Tech Mono", width: "fit-content" }}>
-              2^h &ge; n! ➔ h &ge; log₂(n!)
-            </code>
+            3. A binary tree of height <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>h</var> can have at most 2<sup><var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>h</var></sup> leaves. Therefore:
+            
+            <div style={{ display: "flex", justifyContent: "center", padding: "12px", margin: "8px 0", background: "#080808", borderRadius: "6px", border: "1px solid rgba(255,255,255,0.03)" }}>
+              <span style={{ fontSize: "16px", fontFamily: "Georgia, serif", color: "var(--accent)" }}>
+                2<sup><var style={{ fontStyle: "italic" }}>h</var></sup> &ge; <var style={{ fontStyle: "italic" }}>n</var>! 
+                &nbsp;&rArr;&nbsp; 
+                <var style={{ fontStyle: "italic" }}>h</var> &ge; log₂(<var style={{ fontStyle: "italic" }}>n</var>!)
+              </span>
+            </div>
           </div>
           <div style={{ fontSize: "13px", color: "#fff", lineHeight: "1.6" }}>
-            4. Applying **Stirling's Approximation** ($\ln(n!) \approx n \ln n - n$):
-            <code style={{ display: "block", background: "#0e0e0e", padding: "10px", borderRadius: "6px", fontSize: "12px", color: "var(--accent)", margin: "8px 0", fontFamily: "Share Tech Mono", width: "fit-content" }}>
-              h &ge; n log₂ n - n log₂ e ➔ h = &Omega;(n log n)
-            </code>
+            4. Applying **Stirling's Approximation** (ln(<var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var>!) &approx; <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var> ln <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var> - <var style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>n</var>):
+            
+            <div style={{ display: "flex", justifyContent: "center", padding: "12px", margin: "8px 0", background: "#080808", borderRadius: "6px", border: "1px solid rgba(255,255,255,0.03)" }}>
+              <span style={{ fontSize: "16px", fontFamily: "Georgia, serif", color: "var(--accent)" }}>
+                <var style={{ fontStyle: "italic" }}>h</var> &ge; <var style={{ fontStyle: "italic" }}>n</var> log₂ <var style={{ fontStyle: "italic" }}>n</var> - <var style={{ fontStyle: "italic" }}>n</var> log₂ <var style={{ fontStyle: "italic" }}>e</var> 
+                &nbsp;&rArr;&nbsp; 
+                <var style={{ fontStyle: "italic" }}>h</var> = &Omega;(<var style={{ fontStyle: "italic" }}>n</var> log <var style={{ fontStyle: "italic" }}>n</var>)
+              </span>
+            </div>
           </div>
-          <div style={{ fontSize: "13px", color: "var(--accent)", fontWeight: "bold", marginTop: "6px" }}>
-            Conclusion: Any comparison sort requires at least &Omega;(n log n) operations in the worst case.
+          <div style={{ fontSize: "14px", color: "#9bffd0", fontWeight: "bold", marginTop: "8px", fontFamily: "Georgia, serif", textAlign: "center" }}>
+            Conclusion: Any comparison sort requires at least &Omega;(<var style={{ fontStyle: "italic" }}>n</var> log <var style={{ fontStyle: "italic" }}>n</var>) operations in the worst case.
           </div>
         </div>
       </section>

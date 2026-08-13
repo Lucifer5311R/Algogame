@@ -8,11 +8,15 @@ export const handler = async (event: any) => {
     };
   }
 
-  const dbUrl = process.env.DATABASE_URL;
+  // Netlify Database can inject either DATABASE_URL or NETLIFY_DATABASE_URL
+  const dbUrl = process.env.DATABASE_URL || process.env.NETLIFY_DATABASE_URL;
   if (!dbUrl) {
+    console.error("Database connection string is missing in environment variables.");
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Database Connection string is missing" }),
+      body: JSON.stringify({ 
+        error: "Database Connection string is missing. Please ensure your database is connected to this site and trigger a redeploy." 
+      }),
     };
   }
 
@@ -59,6 +63,7 @@ export const handler = async (event: any) => {
       body: JSON.stringify({ message: "Submission saved successfully!" }),
     };
   } catch (error: any) {
+    console.error("Database error during operation:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: error.message || "Database Query Error" }),
